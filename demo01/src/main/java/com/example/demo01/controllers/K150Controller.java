@@ -37,7 +37,7 @@ public class K150Controller {
             return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
          } else {
             if(k100service.queryByID(pk100Param) == null) {
-               return new ResponseEntity<>("Errol: 2002 - GC Not Exist", HttpStatus.BAD_REQUEST);
+               return new ResponseEntity<>("Errol: 2002 - GCate Not Exist", HttpStatus.BAD_REQUEST);
             }
             if (k150Param.get_id() == null) {
                //create
