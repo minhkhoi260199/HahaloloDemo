@@ -24,7 +24,12 @@ public class K100Controller {
             String kv101Param = k100Param.getKv101();
             String kv102Param = k100Param.getFk101().get(0).getKv102();
             String langParam = k100Param.getFk101().get(0).getLang();
-         if (kv101Param.isEmpty() || kv102Param.isEmpty() || langParam.isEmpty()) {
+         if ( kv101Param == null
+              || kv102Param == null
+              || langParam == null
+              || kv101Param.isEmpty()
+              || kv102Param.isEmpty()
+              || langParam.isEmpty()) {
             return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
          } else {
             if (k100Param.get_id() == null) {
