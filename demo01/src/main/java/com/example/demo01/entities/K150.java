@@ -22,7 +22,7 @@ public class K150 {
    @Id
    @JsonProperty("id")
    @JsonSerialize(using = ToStringSerializer.class)
-   private ObjectId id;
+   private ObjectId _id;
    private String kv151;
    private List<Fk151> fk151 = new ArrayList<>();
    private String pk100;
