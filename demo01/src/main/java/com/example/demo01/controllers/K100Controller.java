@@ -18,8 +18,8 @@ public class K100Controller {
     @RequestMapping(value = "syzFodGroupCatCreatUdp/v1", method = RequestMethod.POST)
     public ResponseEntity<?> save(@RequestBody K100 k100Param){
         try {
-            if(k100Param.getFk101() == null || k100Param.getFk101().size() == 0){
-                return new ResponseEntity<>("Errol: 6001 - Param null",HttpStatus.BAD_REQUEST);
+            if(k100Param.getFk101().size() != 1){
+                return new ResponseEntity<>("Errol: 6001 - Param invalid",HttpStatus.BAD_REQUEST);
             }
             String kv101Param = k100Param.getKv101();
             String kv102Param = k100Param.getFk101().get(0).getKv102();
@@ -106,7 +106,7 @@ public class K100Controller {
         }
     }
     @RequestMapping(value = "syzFodGroupCatDel/v1", method = RequestMethod.GET)
-    public ResponseEntity<?> getById(@RequestParam String id){
+    public ResponseEntity<?> delById(@RequestParam String id){
         try {
             if(id.isEmpty()){
                 return new ResponseEntity<>("Errol: 6001 - Param null",HttpStatus.BAD_REQUEST);

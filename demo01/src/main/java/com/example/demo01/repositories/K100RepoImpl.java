@@ -60,8 +60,8 @@ public class K100RepoImpl implements K100Repo{
         try{
             MongoCollection<Document> collection = this.mongoTemplate.getCollection("k100");
             List<Bson> pipeline = Arrays.asList(new Document("$match", new Document("$and", Arrays.asList(new Document("fk101.lang", lang), new Document("dl145", new Document()
-                    .append("$exist", false)
-                    .append("$ne", new BsonNull()))))),new Document("$project", new Document()
+                    .append("$exists", false)
+                    .append("$eq", new BsonNull()))))),new Document("$project", new Document()
                                                         .append("id", 1)
                                                         .append("kv101",1)
                                                         .append("fk101", new Document("$filter", new Document()
@@ -86,8 +86,8 @@ public class K100RepoImpl implements K100Repo{
         try{
             MongoCollection<Document> collection = this.mongoTemplate.getCollection("k100");
             List<Bson> pipeline = Arrays.asList(new Document("$match", new Document("$and", Arrays.asList(new Document("_id", new ObjectId(id)), new Document("fk101.lang", lang), new Document("dl145", new Document()
-                    .append("$exist", false)
-                    .append("$ne", new BsonNull()))))),new Document("$project", new Document()
+                    .append("$exists", false)
+                    .append("$eq", new BsonNull()))))),new Document("$project", new Document()
                                                         .append("id",1)
                                                         .append("kv101",1)
                                                         .append("fk101", new Document("$filter", new Document()
