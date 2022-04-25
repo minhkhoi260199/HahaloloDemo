@@ -18,26 +18,27 @@ import java.util.List;
 @Document
 public class K100 implements Serializable {
 
-    @Id
-    @JsonProperty("id")
-    @JsonSerialize(using = ToStringSerializer.class)
-    private ObjectId _id;
-    private String kv101;
-    private List<Fk101> fk101;
-    //Record deleted
-    private Date dl145;
+   @Id
+   @JsonProperty("id")
+   @JsonSerialize(using = ToStringSerializer.class)
+   private ObjectId _id;
+   private String kv101;
+   private List<Fk101> fk101;
+   //Record deleted
+   @JsonSerialize(using = ToStringSerializer.class)
+   private Date dl145;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Document
-    public static class Fk101 {
-        @JsonProperty("id")
-        @JsonSerialize(using = ToStringSerializer.class)
-        ObjectId _id;
-        String kv102;
-        String lang;
-    }
+   @Data
+   @NoArgsConstructor
+   @AllArgsConstructor
+   @Document
+   public static class Fk101 {
+      @JsonProperty("id")
+      @JsonSerialize(using = ToStringSerializer.class)
+      ObjectId _id;
+      String kv102;
+      String lang;
+   }
 
 
 }

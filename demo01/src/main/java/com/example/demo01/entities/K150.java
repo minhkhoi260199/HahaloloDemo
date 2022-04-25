@@ -19,25 +19,25 @@ import java.util.List;
 @AllArgsConstructor
 @Document
 public class K150 {
-    @Id
-    @JsonProperty("id")
-    @JsonSerialize(using = ToStringSerializer.class)
-    private ObjectId id;
-    private String kv151;
-    private List<Fk151> fk151 = new ArrayList<>();
-    private String pk100;
-    //Record deleted
-    private Date dl145;
+   @Id
+   @JsonProperty("id")
+   @JsonSerialize(using = ToStringSerializer.class)
+   private ObjectId id;
+   private String kv151;
+   private List<Fk151> fk151 = new ArrayList<>();
+   private String pk100;
+   //Record deleted
+   private Date dl145;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Document
-    public static class Fk151 {
-        @JsonProperty("id")
-        @JsonSerialize(using = ToStringSerializer.class)
-        ObjectId _id;
-        private String kv152;
-        private String lang;
-    }
+   @Data
+   @NoArgsConstructor
+   @AllArgsConstructor
+   @Document
+   public static class Fk151 {
+      @JsonProperty("id")
+      @JsonSerialize(using = ToStringSerializer.class)
+      ObjectId _id;
+      private String kv152;
+      private String lang;
+   }
 }

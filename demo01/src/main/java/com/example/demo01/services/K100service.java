@@ -9,26 +9,26 @@ import java.util.List;
 
 @Service
 public class K100service {
-    @Autowired
-    private K100RepoImpl k100Repo;
+   @Autowired
+   private K100RepoImpl k100Repo;
 
-    public K100 save(K100 k100){
-        return k100Repo.save(k100);
-    }
+   public K100 save(K100 k100) {
+      return k100Repo.save(k100);
+   }
 
-    public List<K100> findAll(String lang){
-        return k100Repo.findAll(lang);
-    }
+   public List<K100> findAll(String lang) {
+      return k100Repo.findAll(lang);
+   }
 
-    public K100 findById(String id, String lang) {
-        return k100Repo.find(id, lang);
-    }
+   public K100 findById(String id, String lang) {
+      return k100Repo.find(id, lang);
+   }
 
-    public K100 queryByID(String id){
-        return k100Repo.queryById(id);
-    }
+   public K100 queryByID(String id) {
+      return k100Repo.queryById(id);
+   }
 
-    public K100 delete(K100 k100){
-        return k100Repo.delete(k100);
-    }
+   public K100 delete(K100 k100) {
+      return k100Repo.delete(k100);
+   }
 }
