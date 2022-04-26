@@ -28,28 +28,7 @@ public class K100RepoImpl implements K100Repo {
    @Override
    public K100 save(K100 k100Param) {
       try {
-         if (k100Param.get_id() == null) {
-            //create k100
-            k100Param.set_id(new ObjectId());
-            k100Param.getFk101().get(0).set_id(new ObjectId());
-            return mongoTemplate.insert(k100Param);
-         } else {
-            //update k100
-            K100 k100 = mongoTemplate.findById(k100Param.get_id(), K100.class);
-            if (k100Param.getFk101().get(0).get_id() == null) {
-               //add fk101
-               k100Param.getFk101().get(0).set_id(new ObjectId());
-               k100.getFk101().add(k100Param.getFk101().get(0));
-            } else {
-               //update fk101
-               for (int i = 0; i < k100.getFk101().size(); i++) {
-                  if (k100.getFk101().get(i).get_id().equals(k100Param.getFk101().get(0).get_id())) {
-                     k100.getFk101().set(i, k100Param.getFk101().get(0));
-                  }
-               }
-            }
-            return mongoTemplate.save(k100);
-         }
+         return mongoTemplate.save(k100Param);
       } catch (MongoException e) {
          e.printStackTrace();
          throw e;
