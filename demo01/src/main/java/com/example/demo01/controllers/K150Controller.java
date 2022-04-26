@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/")
 public class K150Controller {
@@ -81,4 +83,62 @@ public class K150Controller {
       }
    }
 
+   @RequestMapping(value = "syzFodCatsInf/v1", method = RequestMethod.GET)
+   public ResponseEntity<?> getListAll(@RequestParam String lang) {
+      try {
+         if (lang.isEmpty()) {
+            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
+         } else {
+            List<K150> categories = k150service.findAll(lang);
+            if (categories.size() == 0) {
+               return new ResponseEntity<>("Errol: 2004 - No content", HttpStatus.BAD_REQUEST);
+            } else {
+               return new ResponseEntity<>(categories, HttpStatus.OK);
+            }
+         }
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+   }
+
+   @RequestMapping(value = "syzFodCatInf/v1", method = RequestMethod.GET)
+   public ResponseEntity<?> getById(@RequestParam String id, String lang) {
+      try {
+         if (id.isEmpty() || lang.isEmpty()) {
+            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
+         } else {
+            K150 K150 = k150service.queryByID(id);
+            if (K150 == null) {
+               return new ResponseEntity<>("Errol: 2002 - Not Exist", HttpStatus.BAD_REQUEST);
+            } else {
+               K150 cate = k150service.findById(id, lang);
+               return new ResponseEntity<>(cate, HttpStatus.OK);
+            }
+         }
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+   }
+
+   @RequestMapping(value = "syzFodCatDel/v1", method = RequestMethod.GET)
+   public ResponseEntity<?> delById(@RequestParam String id) {
+      try {
+         if (id.isEmpty()) {
+            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
+         } else {
+            K150 K150 = k150service.queryByID(id);
+            if (K150 == null) {
+               return new ResponseEntity<>("Errol: 2002 - Not Exist", HttpStatus.BAD_REQUEST);
+            } else {
+               K150 cate = k150service.delete(K150);
+               return new ResponseEntity<>(cate, HttpStatus.OK);
+            }
+         }
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      }
+   }
 }
