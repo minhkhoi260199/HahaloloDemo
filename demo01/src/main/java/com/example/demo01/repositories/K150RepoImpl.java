@@ -103,28 +103,7 @@ public class K150RepoImpl implements K150Repo {
    @Override
    public K150 save(K150 k150Param) {
       try {
-         if (k150Param.get_id() == null) {
-            //create k150
-            k150Param.set_id(new ObjectId());
-            k150Param.getFk151().get(0).set_id(new ObjectId());
-            return mongoTemplate.insert(k150Param);
-         } else {
-            //update k150
-            K150 k150 = mongoTemplate.findById(k150Param.get_id(), K150.class);
-            if (k150Param.getFk151().get(0).get_id() == null) {
-               //add fk151
-               k150Param.getFk151().get(0).set_id(new ObjectId());
-               k150.getFk151().add(k150Param.getFk151().get(0));
-            } else {
-               //update fk151
-               for (int i = 0; i < k150.getFk151().size(); i++) {
-                  if (k150.getFk151().get(i).get_id().equals(k150Param.getFk151().get(0).get_id())) {
-                     k150.getFk151().set(i, k150Param.getFk151().get(0));
-                  }
-               }
-            }
-            return mongoTemplate.save(k150);
-         }
+         return mongoTemplate.save(k150Param);
       } catch (MongoException e) {
          e.printStackTrace();
          throw e;
