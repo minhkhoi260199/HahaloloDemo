@@ -19,19 +19,18 @@ public class K100Controller {
    @RequestMapping(value = "syzFodGroupCatCreatUdp/v1", method = RequestMethod.POST)
    public ResponseEntity<?> save(@RequestBody K100 k100Param) {
       try {
+         if ( k100Param.getKv101() == null
+              || k100Param.getFk101() == null
+              || k100Param.getFk101().get(0).getKv102() == null
+              || k100Param.getFk101().get(0).getLang() == null
+              || k100Param.getKv101().isEmpty()
+              || k100Param.getFk101().get(0).getKv102().isEmpty()
+              || k100Param.getFk101().get(0).getLang().isEmpty()) {
+            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
+         }
+         String langParam = k100Param.getFk101().get(0).getLang();
          if (k100Param.getFk101().size() != 1) {
             return new ResponseEntity<>("Errol: 6001 - Param invalid", HttpStatus.BAD_REQUEST);
-         }
-         String kv101Param = k100Param.getKv101();
-         String kv102Param = k100Param.getFk101().get(0).getKv102();
-         String langParam = k100Param.getFk101().get(0).getLang();
-         if ( kv101Param == null
-              || kv102Param == null
-              || langParam == null
-              || kv101Param.isEmpty()
-              || kv102Param.isEmpty()
-              || langParam.isEmpty()) {
-            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
          }
          if (k100Param.get_id() == null) {
             //create

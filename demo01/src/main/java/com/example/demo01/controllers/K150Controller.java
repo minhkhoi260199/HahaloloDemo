@@ -22,22 +22,21 @@ public class K150Controller {
    @RequestMapping(value = "syzFodCatCreatUdp/v1", method = RequestMethod.POST)
    public ResponseEntity<?> save(@RequestBody K150 k150Param) {
       try {
-         if (k150Param.getFk151().size() != 1) {
-            return new ResponseEntity<>("Errol: 6001 - Param invalid", HttpStatus.BAD_REQUEST);
+         if ( k150Param.getKv151() == null
+              || k150Param.getFk151() == null
+              || k150Param.getFk151().get(0).getKv152() == null
+              || k150Param.getFk151().get(0).getLang() == null
+              || k150Param.getPk100() == null
+              || k150Param.getKv151().isEmpty()
+              || k150Param.getFk151().get(0).getKv152().isEmpty()
+              || k150Param.getFk151().get(0).getLang().isEmpty()
+              || k150Param.getPk100().isEmpty()) {
+            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
          }
-         String kv151Param = k150Param.getKv151();
-         String kv102Param = k150Param.getFk151().get(0).getKv152();
          String langParam = k150Param.getFk151().get(0).getLang();
          String pk100Param = k150Param.getPk100();
-         if ( kv151Param == null
-              || kv102Param == null
-              || langParam == null
-              || pk100Param == null
-              || kv151Param.isEmpty()
-              || kv102Param.isEmpty()
-              || langParam.isEmpty()
-              || pk100Param.isEmpty()) {
-            return new ResponseEntity<>("Errol: 6001 - Param null", HttpStatus.BAD_REQUEST);
+         if (k150Param.getFk151().size() != 1) {
+            return new ResponseEntity<>("Errol: 6001 - Param invalid", HttpStatus.BAD_REQUEST);
          }
          if(k100service.queryByID(pk100Param) == null) {
             return new ResponseEntity<>("Errol: 2002 - GCate Not Exist", HttpStatus.BAD_REQUEST);
